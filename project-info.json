@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AnimeStats Lab",
+  "alternateName": "AnimeStats-Lab",
+  "url": "https://ytacoixao.github.io/animestats-lab/",
+  "description": "Projeto pessoal brasileiro de descoberta e análise de animes. O aplicativo funcional local prioriza members do MyAnimeList, oferece busca, filtros, favoritos, agrupamento de temporadas, informação comunitária de dublagem PT-BR e galeria de artes visuais.",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Windows (aplicativo local Python, aberto no navegador)",
+  "inLanguage": "pt-BR",
+  "isAccessibleForFree": true,
+  "softwareHelp": "https://ytacoixao.github.io/animestats-lab/ai-guide.html",
+  "codeRepository": "https://github.com/ytacoixao/animestats-lab",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Documentação pública do projeto",
+    "url": "https://ytacoixao.github.io/animestats-lab/"
+  },
+  "dateModified": "2026-11-08",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Pessoas procurando recomendações de anime; assistentes de IA e desenvolvedores"
+  },
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "deployment",
+      "value": "Aplicativo funcional local (127.0.0.1:8765); GitHub Pages contém apresentação e documentação, não o app completo"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "backend",
+      "value": "Python + SQLite; MyAnimeList API v2"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "priorityMetric",
+      "value": "MyAnimeList num_list_users (members), não mean"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "favorites",
+      "value": "Armazenados somente em SQLite local; não estão disponíveis publicamente"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "AIChat",
+      "value": "Ainda não integrado; integração com IA na nuvem é ideia futura"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "thirdPartyData",
+      "value": "MyAnimeList, AniDub, AniZip, TheTVDB"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "animePreview",
+      "value": "Até cinco artes visuais promocionais e alternativas, não thumbnails de episódios"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "localApiBase",
+      "value": "http://127.0.0.1:8765/api (somente no dispositivo local)"
+    }
+  ],
+  "potentialAction": {
+    "@type": "ViewAction",
+    "target": "https://ytacoixao.github.io/animestats-lab/ai-guide.html",
+    "name": "Consultar documentação do AnimeStats Lab"
+  }
+}
