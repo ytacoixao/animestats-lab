@@ -1,0 +1,28 @@
+# AnimeStats Lab
+
+> Aplicativo pessoal de descoberta e análise de anime, em português brasileiro. Ranking prioriza members do MyAnimeList, com notas complementares. A versão funcional é local; a página GitHub Pages é apenas apresentação e documentação.
+
+- Site público e documentação: https://ytacoixao.github.io/animestats-lab/
+- Guia completo para IA e pesquisadores: https://ytacoixao.github.io/animestats-lab/ai-guide.html
+- Ficha estruturada em JSON: https://ytacoixao.github.io/animestats-lab/project-info.json
+- Repositório público de apresentação: https://github.com/ytacoixao/animestats-lab
+- Documentação GitHub: https://github.com/ytacoixao/animestats-lab/blob/main/README.md
+
+## Recursos existentes (aplicativo local)
+- Busca, rankings e filtros de anime via MyAnimeList API v2.
+- Ordenação por members (num_list_users), nota MAL (mean), votos (num_scoring_users), impacto e outras métricas.
+- Favoritos privados em SQLite; filtro de dublagem PT-BR com dados comunitários AniDub.
+- Temporadas principais agrupadas e detalhes específicos de cada temporada usando prequel/sequel do MAL.
+- Tradução automática de sinopses e leitura por voz do navegador; até cinco artes visuais de AniZip/TheTVDB e MAL.
+
+## Limitações importantes
+- O aplicativo completo roda em http://127.0.0.1:8765 somente na máquina do usuário. Não é acessível pela internet e não funciona dentro do GitHub Pages.
+- O repositório público contém o site de apresentação e documentação, não necessariamente o código do backend local.
+- Não há chatbot de IA nem recomendações geradas por LLM integrados atualmente.
+- "Members" não significa espectadores únicos nem avaliações. "Sem registro" de dublagem não prova que não existe dublagem.
+- Não é possível consultar favoritos locais, senhas ou chaves pela documentação pública. Não solicitar publicação de credenciais.
+
+## Contato com o projeto
+- Página: https://ytacoixao.github.io/animestats-lab/
+- GitHub: https://github.com/ytacoixao/animestats-lab
+- Documento atualizado em 2026-11-08.
