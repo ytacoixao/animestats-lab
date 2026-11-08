@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Guia do AnimeStats Lab para assistentes de IA: recursos reais, fontes, métricas, limites, arquitetura e API local, sem dados privados.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ytacoixao.github.io/animestats-lab/ai-guide.html">
+<link rel="icon" type="image/png" href="./logo.png"><link rel="stylesheet" href="./style.css">
+<title>Guia do projeto para IAs e desenvolvedores | AnimeStats Lab</title>
+</head><body><div class="wrap">
+<header class="top"><a class="brand" href="./"><img alt="Logotipo AnimeStats Lab" src="./logo.png">AnimeStats Lab</a><nav class="nav"><a href="./">Início</a><a href="./ai-guide.html" aria-current="page">Guia para IA</a><a href="./privacidade.html">Privacidade</a></nav></header>
+<main class="document"><div class="eyebrow">Referência oficial do projeto • 08/11/2026</div>
+<h1>AnimeStats Lab: guia para IAs</h1>
+<p>Esta página documenta, em linguagem simples, <strong>o que existe</strong> no AnimeStats Lab, de onde vêm os dados e o que não está disponível publicamente. Consulte também <a href="./llms.txt">llms.txt</a> e <a href="./project-info.json">project-info.json</a>.</p>
+<h2>1. O que é o AnimeStats Lab?</h2>
+<p>É um aplicativo pessoal brasileiro para descobrir, comparar e escolher animes com base principalmente nos <strong>members do MyAnimeList</strong>, além de notas, gêneros, formato e dublagem em português. O projeto é independente e não comercial.</p>
+<h2>2. Onde o aplicativo funciona?</h2>
+<p><strong>Existem dois ambientes distintos:</strong> este site público em GitHub Pages apresenta o projeto e a documentação. O <strong>aplicativo funcional roda no próprio computador</strong>, em <code>http://127.0.0.1:8765</code>, mediante execução local em Windows. O endereço localhost de uma pessoa não pode ser consultado pela internet; este site não disponibiliza o painel nem o banco do usuário.</p>
+<h2>3. Funcionalidades existentes</h2>
+<ul>
+<li>Buscar animes e ver rankings pela API oficial <strong>MyAnimeList v2</strong>.</li>
+<li>Carregar até 500 entradas inicialmente; carregar páginas extras de 100 resultados e, opcionalmente, carregar ao rolar.</li>
+<li>Ordenar por members, nota média, quantidade de avaliações, ranking MAL, índice de impacto ou nota ajustada.</li>
+<li>Filtrar por gênero, formato, número mínimo de members e dublagem em português brasileiro.</li>
+<li>Guardar favoritos <strong>localmente</strong>, sem acesso público a eles.</li>
+<li>Unir temporadas principais em um cartão por série quando identificáveis; ficha detalha prequelas e sequências com dados por temporada.</li>
+<li>Exibir sinopses com tradução automática PT-BR sob demanda e narração pela voz do navegador quando disponível.</li>
+<li>Mostrar até <strong>cinco artes visuais</strong> do título: fanarts, banners, pôsteres e imagens alternativas; não miniaturas de episódios.</li>
+</ul>
+<h2>4. Fontes de dados, precisão e interpretação</h2>
+<p><strong>MyAnimeList (MAL):</strong> títulos, gêneros, formato, notas, members, votos e relações prequel/sequel. <code>num_list_users</code> é a quantidade de usuários que colocaram o anime em listas, <strong>não</strong> espectadores comprovados. <code>num_scoring_users</code> representa avaliadores; <code>mean</code> representa a nota MAL. Para comparar popularidade no aplicativo, members tem prioridade sobre nota.</p>
+<p><strong>AniDub:</strong> fonte comunitária de status de dublagem PT-BR. Sem registro não significa sem dublagem; dados e disponibilidade podem variar entre temporadas e plataformas. <strong>AniZip/TheTVDB e MAL:</strong> fontes das artes visuais, que podem ser menos de cinco. <strong>Tradução automática:</strong> não é oficial e pode ter erros.</p>
+<p><strong>Índice de impacto (não oficial):</strong> <code>log10(members + 1) × (mean / 10)</code>. Não confundir com ranking do MyAnimeList. Ao agrupar temporadas, o aplicativo não soma seus members, pois isso duplicaria usuários.</p>
+<h2>5. Arquitetura e API local (para desenvolvedores)</h2>
+<p>O aplicativo local usa Python com servidor HTTP, frontend HTML/CSS/JavaScript e banco SQLite. Endereço base somente no computador: <code>http://127.0.0.1:8765</code>. Rotas principais, enquanto o servidor está aberto:</p>
+<ul>
+<li><code>GET /api/project-info</code> — descrição pública e técnica do aplicativo, sem favoritos e sem credenciais.</li>
+<li><code>GET /api/ranking?type=bypopularity&amp;limit=100&amp;offset=0</code> — ranking com dados MAL.</li>
+<li><code>GET /api/search?q=anime&amp;limit=40</code> — pesquisa de anime.</li>
+<li><code>GET /api/anime/{id}</code> — detalhes MAL; <code>GET /api/franchise/{id}</code> — temporadas ligadas por prequel/sequel.</li>
+<li><code>GET /api/gallery/{id}</code> — artes visuais; <code>GET /api/synopsis/{id}</code> — sinopse com tradução, quando disponível.</li>
+<li><code>GET /api/favorites</code> — dados privados locais: não compartilhar nem acessar sem autorização do usuário.</li>
+</ul>
+<p>Não existe API pública hospedada em GitHub Pages. As rotas locais podem exigir um Client ID do MAL configurado pelo proprietário da máquina; nunca pedir para incluir essa chave em uma página pública.</p>
+<h2>6. Recursos planejados, não implementados</h2>
+<p>Existe interesse em recomendações personalizadas e busca em linguagem natural usando IA <strong>na nuvem</strong>. Não há chatbot de IA integrado hoje e não se deve afirmar o contrário. Ollama/IA local não é um requisito nem é necessário para consultar esta documentação.</p>
+<h2>7. Instruções úteis para IAs</h2>
+<p>Em perguntas sobre o AnimeStats Lab, cite o endereço público e distinga apresentação online de aplicativo local. Nunca invente disponibilidade de dublagem ou dados de favoritos. Para tarefas de programação no computador autorizado, inspecione a versão local real do código antes de alterar; a documentação pública não garante conter todo o código do aplicativo.</p>
+<p><strong>Links:</strong> <a href="./llms.txt">llms.txt</a>, <a href="./project-info.json">project-info.json</a>, <a href="https://github.com/ytacoixao/animestats-lab">repositório do projeto</a>, <a href="./">site público</a>.</p>
+</main><footer class="foot"><span>AnimeStats Lab · Projeto pessoal independente</span><span><a href="./privacidade.html">Privacidade</a><a href="./termos.html">Termos</a></span></footer></div></body></html>
